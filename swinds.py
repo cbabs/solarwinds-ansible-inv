@@ -41,7 +41,7 @@ except ImportError:
 
 
 #Orion Server IP or DNS/hostname
-server = '10.150.199.44'
+server = '10.10.10.10'
 #Orion Username
 user = 'ansible'
 #Orion Password
