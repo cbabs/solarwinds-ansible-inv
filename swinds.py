@@ -90,7 +90,7 @@ class SwInventory(object):
         dumped = eval(simplejson.dumps(jsonget))
 
 
-        final_dict= {}
+        final_dict= {'_meta': {'hostvars': {}}}
 
         for m in dumped['results']:
             if m[groupField] in final_dict:
