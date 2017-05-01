@@ -45,7 +45,7 @@ server = '10.150.199.44'
 #Orion Username
 user = 'ansible'
 #Orion Password
-password = 'akj39.dfjhSHS1poWNMSj8387123h'
+password = 'password'
 #Field for groups
 groupField = 'Vendor'
 #Field for host
