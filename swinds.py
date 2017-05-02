@@ -33,6 +33,7 @@ import os
 import sys
 import argparse
 import requests
+import re
 
 try:
     import json
@@ -89,10 +90,11 @@ class SwInventory(object):
         hostsData = jsonget
         dumped = eval(simplejson.dumps(jsonget))
 
-
         final_dict= {'_meta': {'hostvars': {}}}
-
+        
+        #Loop hosts in groups and remove special chars from group names
         for m in dumped['results']:
+            m[groupField] = re.sub('[^A-Za-z0-9]+', '', m[groupField])
             if m[groupField] in final_dict:
                 final_dict[ m[groupField] ]['hosts'].append(m[hostField])
             else:
