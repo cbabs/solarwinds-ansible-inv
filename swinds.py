@@ -3,7 +3,7 @@
 
 '''
 Custom dynamic inventory script for Ansible and Solar Winds, in Python.
-This was tested on Python 2.7.6 and Ansible  2.3.0.0.
+This was tested on Python 2.7.6, Orion 2016.2.100, and Ansible  2.3.0.0.
 
 (c) 2017, Chris Babcock (chris@bluegreenit.com)
 
@@ -29,8 +29,6 @@ boundaries of good taste of course.
 
 '''
 import simplejson
-import os
-import sys
 import argparse
 import requests
 import re
@@ -60,9 +58,9 @@ req = requests.get(url, params=payload, verify=False, auth=(user, password))
 jsonget = req.json()
 #json_resp = json.loads(req)
 
-
 class SwInventory(object):
-
+    
+    #CLI arguments
     def read_cli(self):
         parser = argparse.ArgumentParser()
         parser.add_argument('--host')
@@ -89,11 +87,13 @@ class SwInventory(object):
     def get_list(self):
         hostsData = jsonget
         dumped = eval(simplejson.dumps(jsonget))
-
+        
+        #Inject data below to speed up script
         final_dict= {'_meta': {'hostvars': {}}}
         
         #Loop hosts in groups and remove special chars from group names
         for m in dumped['results']:
+            #Allow Upper/lower letters and numbers.  Remove everything else
             m[groupField] = re.sub('[^A-Za-z0-9]+', '', m[groupField])
             if m[groupField] in final_dict:
                 final_dict[ m[groupField] ]['hosts'].append(m[hostField])
