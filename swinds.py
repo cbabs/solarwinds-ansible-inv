@@ -22,10 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 NOTE:  This software is free to use for any reason or purpose. That said, the
 author request that improvements be submitted back to the repo or forked
-to something public.  The author reserves the right to chastise, mock,
-chide or tease any person or company that does not abide by the spirit of
-public sharing.  The author encourages others to do the same within the 
-boundaries of good taste of course.
+to something public.  
 
 '''
 import simplejson
